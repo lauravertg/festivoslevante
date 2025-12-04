@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Vacaciones Nativo</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script type="module">
+        // Importa y expone las funciones de Firebase al ámbito global (window)
+        // Esto es necesario porque el archivo script.js se ejecuta después y necesita acceder a ellas.
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js';
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js';
+        import { getFirestore, doc, setDoc, onSnapshot, collection, addDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js';
+
+        window.firebase = {
+            initializeApp,
+            getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged,
+            getFirestore, doc, setDoc, onSnapshot, collection, addDoc, deleteDoc
+        };
+
+        // Carga la lógica principal de la aplicación
+        import('./script.js');
+    </script>
+</head>
+<body>
+    <div id="app-root" class="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors p-4 sm:p-8">
+        <header id="header-container" class="mb-8 flex justify-between items-center flex-wrap gap-4"></header>
+        
+        <div id="loading-indicator">
+            <div class="text-center p-10 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
+                <p class="text-lg font-medium text-gray-700 dark:text-gray-300">
+                    Cargando aplicación y autenticación...
+                </p>
+            </div>
+        </div>
+
+        <div id="main-content" style="display: none;">
+            </div>
+
+    </div>
+</body>
+</html>
